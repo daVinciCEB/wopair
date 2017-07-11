@@ -13,8 +13,6 @@ defmodule WorkoutDemo.UserView do
     %{id: user.id,
       name: user.name,
       email: user.email,
-      password_hash: user.password_hash,
-      description: user.description,
-      location: user.location}
+      description: user.description}
   end
 end

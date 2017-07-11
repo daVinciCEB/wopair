@@ -7,5 +7,7 @@ defmodule WorkoutDemo.Router do
 
   scope "/api", WorkoutDemo do
     pipe_through :api
+    
+    resources "/users", UserController, except: [:new, :edit]
   end
 end
