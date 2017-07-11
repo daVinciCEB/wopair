@@ -1,0 +1,18 @@
+defmodule WorkoutDemo.Repo.Migrations.CreateUser do
+  use Ecto.Migration
+
+  def change do
+    create table(:users) do
+      add :name, :string
+      add :email, :string
+      add :password_hash, :string
+      add :description, :string
+      add :location, :geography
+
+      timestamps()
+    end
+    create unique_index(:users, [:name])
+    create unique_index(:users, [:email])
+
+  end
+end

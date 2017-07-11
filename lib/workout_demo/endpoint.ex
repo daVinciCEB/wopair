@@ -36,5 +36,6 @@ defmodule WorkoutDemo.Endpoint do
     key: "_workout_demo_key",
     signing_salt: "8xZxCLRj"
 
+  plug CORSPlug
   plug WorkoutDemo.Router
 end

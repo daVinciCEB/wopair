@@ -12,6 +12,7 @@ config :logger, level: :warn
 # Configure your database
 config :workout_demo, WorkoutDemo.Repo,
   adapter: Ecto.Adapters.Postgres,
+  types: WorkoutDemo.PostgresTypes,
   username: "postgres",
   password: "postgres",
   database: "workout_demo_test",
