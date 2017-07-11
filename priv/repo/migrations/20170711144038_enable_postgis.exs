@@ -1,5 +1,5 @@
 defmodule WorkoutDemo.Repo.Migrations.EnablePostgis do
-  use Ecto.Migratio
+  use Ecto.Migration
 
   def up do
     execute "CREATE EXTENSION IF NOT EXISTS postgis"
