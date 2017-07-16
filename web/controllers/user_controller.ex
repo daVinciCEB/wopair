@@ -9,7 +9,10 @@ defmodule WorkoutDemo.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    changeset = User.changeset(%User{}, user_params)
+    location_point = %{"location" => %Geo.Point{coordinates: {user_params["longitude"], user_params["latitude"]}, srid: 4326}}
+    new_user_params = Map.merge(user_params, location_point)
+
+    changeset = User.changeset(%User{}, new_user_params)
 
     case Repo.insert(changeset) do
       {:ok, user} ->
@@ -30,8 +33,11 @@ defmodule WorkoutDemo.UserController do
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
+    location_point = %{"location" => %Geo.Point{coordinates: {user_params["longitude"], user_params["latitude"]}, srid: 4326}}
+    new_user_params = Map.merge(user_params, location_point)
+
     user = Repo.get!(User, id)
-    changeset = User.changeset(user, user_params)
+    changeset = User.changeset(user, new_user_params)
 
     case Repo.update(changeset) do
       {:ok, user} ->
