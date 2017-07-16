@@ -7,7 +7,11 @@ defmodule WorkoutDemo.Router do
 
   scope "/api", WorkoutDemo do
     pipe_through :api
-    
+
     resources "/users", UserController, except: [:new, :edit]
+
+	# JSON REST Routes for Searching
+    post "/search/users", LocationQueryController, :users_within_radius
+
   end
 end
