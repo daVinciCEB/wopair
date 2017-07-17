@@ -5,8 +5,8 @@ services:
 
 variables:
   MIX_ENV: "test"
-  POSTGRES_DB: "workout_demo_test"
-  POSTGRES_USER: "runner"
+  POSTGRES_DB: workout_demo_test
+  POSTGRES_USER: runner
   POSTGRES_PASSWORD: “s0m3P@ssw0Rd”
 
 stages:
