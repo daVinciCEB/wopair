@@ -1,6 +1,6 @@
 # WorkoutBuddy - Demo: A yet unnamed workout app for matching people to workout together
 
-[![build status](https://gitlab.com/daVinciCEB/unnamed-workout-app/badges/master/build.svg)](https://gitlab.com/daVinciCEB/unnamed-workout-app/commits/master)
+[![build status](https://gitlab.com/daVinciCEB/unnamed-workout-app/badges/master/build.svg)](https://gitlab.com/daVinciCEB/unnamed-workout-app/commits/master) [![coverage report](https://gitlab.com/daVinciCEB/unnamed-workout-app/badges/master/coverage.svg)](https://gitlab.com/daVinciCEB/unnamed-workout-app/commits/master)
 
 The WorkoutBuddy - Demo is a yet unnamed workout app designed to match people to workout together. Think Tinder, for workout buddies!
 

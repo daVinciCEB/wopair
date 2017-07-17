@@ -10,7 +10,9 @@ defmodule WorkoutDemo.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
-     deps: deps()]
+     deps: deps(),
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test]]
   end
 
   # Configuration for the OTP application.
@@ -38,7 +40,8 @@ defmodule WorkoutDemo.Mixfile do
      {:cowboy, "~> 1.0"},
      {:geo, "~> 1.0"},
      {:cors_plug, "~> 1.2"},
-     {:comeonin, "~> 3.0"}
+     {:comeonin, "~> 3.0"},
+     {:excoveralls, "~> 0.7", only: :test}
    ]
   end
 

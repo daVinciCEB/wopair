@@ -18,7 +18,7 @@ defmodule WorkoutDemo.LocationQueryController do
     else
       conn
         |> put_status(:unprocessable_entity)
-        |> render(RecruitmeApi.ChangesetView, "error.json", changeset: changeset)
+        |> render(WorkoutDemo.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

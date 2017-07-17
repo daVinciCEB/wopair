@@ -3,7 +3,7 @@ defmodule WorkoutDemo.LocationQueryTest do
 
   alias WorkoutDemo.LocationQuery
 
-  @valid_attrs %{latitude: "120.5", longitude: "120.5", radius: "120.5"}
+  @valid_attrs %{latitude: 76.5, longitude: 120.5, radius: 1000}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
