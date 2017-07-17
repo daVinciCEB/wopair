@@ -6,6 +6,9 @@ services:
   - mdillon/postgis
 
 variables:
+  POSTGRES_USER: "postgres"
+  POSTGRES_DB: "workout_demo_test"
+  POSTGRES_PASSWORD: "postgres"
   MIX_ENV: "test"
 
 before_script:
@@ -14,7 +17,8 @@ before_script:
   - apt-get install -y postgresql-client
   - mix local.hex --force
   - mix deps.get --only test
-  - mix ecto.reset
+  - mix ecto.create
+  - mix ecto.migrate
 
 unit-testing:
   tags:
