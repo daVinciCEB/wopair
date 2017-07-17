@@ -12,7 +12,8 @@ before_script:
   - apt-get install -y postgresql-client
   - mix local.hex --force
   - mix deps.get --only test
-  - mix ecto.reset
+  - mix ecto.create
+  - mix ecto.migrate
 
 unit-testing:
   tags:
