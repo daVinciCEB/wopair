@@ -12,7 +12,7 @@ before_script:
   # Setup phoenix dependencies
   - apt-get update
   - apt-get install -y postgresql-client
-  - apt-get install -y postgis postgresql-9.5-postgis-scripts
+  - apt-get install -y postgis*
   - mix local.hex --force
   - mix deps.get --only test
   - mix ecto.create
