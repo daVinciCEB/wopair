@@ -15,6 +15,7 @@ before_script:
   # - apt-get install -y postgis*
   # - cd '/etc/postgresql-common'; ls
   # - sed -e "s/[#]\?listen_addresses = .*/listen_addresses = '*'/g" -i '/etc/postgresql/9/main/postgresql.conf'
+  - sudo netstat -plunt |grep postgres
   - mix local.hex --force
   - mix deps.get --only test
   - mix deps.compile
