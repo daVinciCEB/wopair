@@ -1,7 +1,7 @@
 image: elixir:1.3
 
 services:
-  - postgres:9.4
+  - postgres:9.2
   # Using postgis instead of postgres for the postgis extension
   # - evili/postgis
 
@@ -14,8 +14,7 @@ before_script:
   - apt-get install -y postgresql-client
   # - apt-get update
   # - apt-get install -y postgis
-  - psql --username=postgres
-  - \q
+  - psql --username=postgres --host=localhost --port=5432
   - mix local.hex --force
   - mix deps.get --only test
   - mix ecto.create
