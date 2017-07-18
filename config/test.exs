@@ -13,9 +13,9 @@ config :logger, level: :warn
 config :workout_demo, WorkoutDemo.Repo,
   adapter: Ecto.Adapters.Postgres,
   types: WorkoutDemo.PostgresTypes,
-  username: "postgres",
+  username: "testuser",
   password: "postgres",
   database: "workout_demo_test",
   #hostname: if(System.get_env("CI"), do: "postgres", else: "localhost"),
-  hostname: "localhost",
+  hostname: "mdillon__postgis",
   pool: Ecto.Adapters.SQL.Sandbox
