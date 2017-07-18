@@ -14,7 +14,7 @@ before_script:
   - apt-get install -y postgresql-client
   # - apt-get update
   # - apt-get install -y postgis
-  - psql --username=postgres --host=localhost --port=15432
+  - psql --username=postgres
   - mix local.hex --force
   - mix deps.get --only test
   - mix ecto.create
