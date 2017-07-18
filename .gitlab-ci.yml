@@ -12,8 +12,9 @@ before_script:
   # Setup phoenix dependencies
   - apt-get update
   - apt-get install -y postgresql-client
-  - apt-get update
-  - apt-get install -y postgis
+  # - apt-get update
+  # - apt-get install -y postgis
+  - psql --username=postgres --host=localhost --port=5432
   - mix local.hex --force
   - mix deps.get --only test
   - mix ecto.create
