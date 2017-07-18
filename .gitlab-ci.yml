@@ -2,8 +2,8 @@ image: elixir:1.3
 
 services:
   # - postgres:9.6
-  # Instead of postgres:9.4 -- this is going to pull pg9.4 + postgis2.2
-  - mdillon/postgis:9.4
+  # Instead of postgres -- this is going to pull pg + postgis
+  - mdillon/postgis
 
 variables:
   MIX_ENV: "test"
@@ -13,23 +13,30 @@ variables:
   POSTGRES_USER: testuser
   POSTGRES_PASSWORD: "postgres"
 
-  # This is going to be used by the application
-  # DATABASE_URL: "postgres://testuser:@mdillon__postgis/test_myapp"
-
 before_script:
   # Setup phoenix dependencies
   - apt-get update
   - apt-get install -y postgresql-client
-  # - apt-get update
-  # - apt-get install -y postgis
-  # - psql --username=postgres --host=mdillon__postgis --port=5432
   - mix local.hex --force
   - mix deps.get --only test
   - mix ecto.reset
 
+stages:
+  - testing
+  - coverage
+
 unit-testing:
+  stage: testing
   tags:
     - elixir
     - phoenix
   script:
     - mix test
+
+code-coverage:
+  stage: coverage
+  tags:
+    - elixir
+    - phoenix
+  script:
+    - mix coveralls
