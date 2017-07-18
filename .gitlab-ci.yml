@@ -3,7 +3,7 @@ image: elixir:1.3
 services:
   - postgres:9.6
   # Using postgis instead of postgres for the postgis extension
-  # - evili/postgis
+  - mdillon/postgis
 
 variables:
   MIX_ENV: "test"
@@ -11,15 +11,12 @@ variables:
 before_script:
   # Setup phoenix dependencies
   - apt-get update
-  - apt-get install -y postgresql-client
+  # - apt-get install -y postgresql-client
   # - apt-get install -y postgis*
-  # - cd '/etc/postgresql-common'; ls
-  # - sed -e "s/[#]\?listen_addresses = .*/listen_addresses = '*'/g" -i '/etc/postgresql/9/main/postgresql.conf'
   - mix local.hex --force
   - mix deps.get --only test
-  - mix deps.compile
   - mix ecto.create
-  # - mix ecto.migrate
+  - mix ecto.migrate
 
 unit-testing:
   tags:
