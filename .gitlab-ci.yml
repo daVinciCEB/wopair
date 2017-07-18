@@ -10,7 +10,7 @@ variables:
 
   # These are used by the base image to setup the first database
   POSTGRES_DB: workout_demo_test
-  POSTGRES_USER: testuser
+  POSTGRES_USER: postgres
   POSTGRES_PASSWORD: "postgres"
 
 before_script:

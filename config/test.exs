@@ -13,7 +13,7 @@ config :logger, level: :warn
 config :workout_demo, WorkoutDemo.Repo,
   adapter: Ecto.Adapters.Postgres,
   types: WorkoutDemo.PostgresTypes,
-  username: "testuser",
+  username: "postgres",
   password: "postgres",
   database: "workout_demo_test",
   hostname: if(System.get_env("CI"), do: "mdillon__postgis", else: "localhost"),
