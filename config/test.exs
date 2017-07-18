@@ -16,6 +16,6 @@ config :workout_demo, WorkoutDemo.Repo,
   username: "testuser",
   password: "postgres",
   database: "workout_demo_test",
-  #hostname: if(System.get_env("CI"), do: "postgres", else: "localhost"),
-  hostname: "mdillon__postgis",
+  hostname: if(System.get_env("CI"), do: "mdillon__postgis", else: "localhost"),
+  # hostname: "mdillon__postgis",
   pool: Ecto.Adapters.SQL.Sandbox
