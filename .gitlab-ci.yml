@@ -14,11 +14,12 @@ before_script:
   - apt-get install -y postgresql-client
   # - apt-get update
   # - apt-get install -y postgis
-  - psql --username=postgres --host=localhost --port=5432
-  - mix local.hex --force
-  - mix deps.get --only test
-  - mix ecto.create
-  - mix ecto.migrate
+  - cd /usr/local/var/postgres; ls
+  # - psql --username=postgres --host=localhost --port=5432
+  # - mix local.hex --force
+  # - mix deps.get --only test
+  # - mix ecto.create
+  # - mix ecto.migrate
 
 unit-testing:
   tags:
