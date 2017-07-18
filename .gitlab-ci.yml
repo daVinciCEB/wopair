@@ -13,7 +13,7 @@ before_script:
   - apt-get update
   - apt-get install -y postgresql-client
   # - apt-get install -y postgis*
-  - sed -e "s/[#]\?listen_addresses = .*/listen_addresses = '*'/g" -i '/etc/postgresql/9.4/main/postgresql.conf'
+  - sed -e "s/[#]\?listen_addresses = .*/listen_addresses = '*'/g" -i '/etc/postgresql/9.6/main/postgresql.conf'
   - mix local.hex --force
   - mix deps.get --only test
   - mix deps.compile
