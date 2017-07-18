@@ -15,6 +15,7 @@ before_script:
   # - apt-get install -y postgis*
   - mix local.hex --force
   - mix deps.get --only test
+  - mix deps.compile
   - mix ecto.create
   - mix ecto.migrate
 
