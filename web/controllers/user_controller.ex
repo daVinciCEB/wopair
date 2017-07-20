@@ -12,7 +12,7 @@ defmodule WorkoutDemo.UserController do
     location_point = %{"location" => %Geo.Point{coordinates: {user_params["longitude"], user_params["latitude"]}, srid: 4326}}
     new_user_params = Map.merge(user_params, location_point)
 
-    changeset = User.changeset(%User{}, new_user_params)
+    changeset = User.registration_changeset(%User{}, new_user_params)
 
     case Repo.insert(changeset) do
       {:ok, user} ->

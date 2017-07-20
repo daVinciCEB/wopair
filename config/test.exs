@@ -9,6 +9,10 @@ config :workout_demo, WorkoutDemo.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+# Lower the encryption on comeonin for testing purposes
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1
+
 # Configure your database
 config :workout_demo, WorkoutDemo.Repo,
   adapter: Ecto.Adapters.Postgres,
@@ -17,5 +21,4 @@ config :workout_demo, WorkoutDemo.Repo,
   password: "postgres",
   database: "workout_demo_test",
   hostname: if(System.get_env("CI"), do: "mdillon__postgis", else: "localhost"),
-  # hostname: "mdillon__postgis",
   pool: Ecto.Adapters.SQL.Sandbox
