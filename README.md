@@ -18,7 +18,7 @@ Phase 1 will be developing the Backend API, which will be built using the [Phoen
 
 - [x] Data Model needs to be set up
 - [x] API needs to be created with full JSON REST
-- [x] Users will be able to login and logout
+- [ ] Users will be able to login and logout
 - [ ] Users will have various roles available to them (User, *Premium User*, *Promoted Trainer*)
 - [ ] If a user signs in, the API will return other Buddies within the specified radius of the user (#6)
 - [ ] Users should be able to like or dislike Buddies (#7)
