@@ -15,6 +15,9 @@ erl_crash.dump
 # variables.
 /config/prod.secret.exs
 
+# coverage report folder
+/cover
+
 ### SublimeText ###
 # cache files for sublime text
 *.tmlanguage.cache

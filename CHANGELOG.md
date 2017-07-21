@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.0] - 2017-07-10
+## [0.1.0] - 2017-07-23
 ### Added
 
 - This is the first release of the WorkoutBuddy - Demo Application
@@ -13,3 +13,5 @@ All notable changes to this project will be documented in this file.
 - API returns JSON objects to all HTTP requests
 - API is built on complete interconnected data model (Users, Buddies)
 - API has an endpoint for Location based searching of Users under the User route
+- API allows users to login and logout
+- API stores session data for users to allow multiple sessions
