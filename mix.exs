@@ -41,6 +41,7 @@ defmodule WorkoutDemo.Mixfile do
      {:geo, "~> 1.0"},
      {:cors_plug, "~> 1.2"},
      {:comeonin, "~> 3.0"},
+     {:secure_random, "~> 0.5"},
      {:excoveralls, "~> 0.7", only: :test}
    ]
   end
