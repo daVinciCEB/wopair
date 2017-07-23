@@ -18,12 +18,12 @@ defmodule WorkoutDemo.SessionController do
       user ->
         conn
         |> put_status(:unauthorized)
-        |> render("error_1.json", user_params)
+        |> render("error.json", user_params)
       true ->
         dummy_checkpw()
         conn
         |> put_status(:unauthorized)
-        |> render("error_2.json", user_params)
+        |> render("error.json", user_params)
     end
   end
 end

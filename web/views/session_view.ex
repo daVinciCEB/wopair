@@ -9,13 +9,7 @@ defmodule WorkoutDemo.SessionView do
     %{token: session.token}
   end
 
-  def render("error_1.json", _anything) do
+  def render("error.json", _anything) do
     %{errors1: "failed to authenticate"}
-  end
-  def render("error_2.json", _anything) do
-    %{errors2: "failed to authenticate"}
-  end
-  def render("index.json", %{user: user}) do
-    %{user: user.email}
   end
 end
