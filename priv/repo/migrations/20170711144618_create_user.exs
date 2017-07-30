@@ -9,6 +9,7 @@ defmodule WorkoutDemo.Repo.Migrations.CreateUser do
       add :description, :string, null: false
       add :latitude, :float, null: false
       add :longitude, :float, null: false
+      add :radius, :float, null: false
       add :location, :geography, null: false
 
       timestamps()

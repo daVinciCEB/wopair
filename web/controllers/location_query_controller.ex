@@ -7,6 +7,16 @@ defmodule WorkoutDemo.LocationQueryController do
   alias WorkoutDemo.LocationQuery
   alias WorkoutDemo.User
 
+  plug WorkoutDemo.Authentication
+
+  def search_users_within_radius(conn, _params) do
+    user_location = conn.assigns.current_user.location
+    user_radius = conn.assigns.current_user.radius
+    query = from user in User, where: st_distance(user.location, ^user_location)  < ^user_radius,  select: user
+    users = Repo.all(query)
+    render(conn, "user_search_results.json", users: users)
+  end
+
   # Find all Jobs withing a radius in meters
   def users_within_radius(conn, %{"search" => search_params}) do
     changeset = LocationQuery.changeset(%LocationQuery{}, search_params)

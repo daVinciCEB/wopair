@@ -2,9 +2,9 @@ defmodule WorkoutDemo.UserControllerTest do
   use WorkoutDemo.ConnCase
 
   alias WorkoutDemo.User
-  @valid_registration_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5}
-  @valid_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", description: "some content", latitude: 76.5, longitude: 120.5}
-  @invalid_attrs %{name: "Coby Benveniste", email: "a fake email", password: "12345", description: "some content", latitude: 900, longitude: 1450}
+  @valid_registration_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, radius: 1000}
+  @valid_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", description: "some content", latitude: 76.5, longitude: 120.5, radius: 1000}
+  @invalid_attrs %{name: "Coby Benveniste", email: "a fake email", password: "12345", description: "some content", latitude: 900, longitude: 1450, radius: 1000000000000}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -16,7 +16,7 @@ defmodule WorkoutDemo.UserControllerTest do
   end
 
   test "shows chosen resource", %{conn: conn} do
-    user = Repo.insert! %User{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password_hash: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, location: %Geo.Point{}}
+    user = Repo.insert! %User{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password_hash: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, location: %Geo.Point{}, radius: 1000.0}
     conn = get conn, user_path(conn, :show, user)
     assert json_response(conn, 200)["user"] == %{"id" => user.id,
       "name" => user.name,
@@ -42,20 +42,20 @@ defmodule WorkoutDemo.UserControllerTest do
   end
 
   test "updates and renders chosen resource when data is valid", %{conn: conn} do
-    user = Repo.insert! %User{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password_hash: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, location: %Geo.Point{}}
+    user = Repo.insert! %User{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password_hash: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, location: %Geo.Point{}, radius: 1000.0}
     conn = put conn, user_path(conn, :update, user), user: @valid_attrs
     assert json_response(conn, 200)["user"]["id"]
     assert Repo.get_by(User, @valid_attrs)
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    user = Repo.insert! %User{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password_hash: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, location: %Geo.Point{}}
+    user = Repo.insert! %User{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password_hash: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, location: %Geo.Point{}, radius: 10000000000000.0}
     conn = put conn, user_path(conn, :update, user), user: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "deletes chosen resource", %{conn: conn} do
-    user = Repo.insert! %User{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password_hash: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, location: %Geo.Point{}}
+    user = Repo.insert! %User{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password_hash: "thisisapassword", description: "some content", latitude: 76.5, longitude: 120.5, location: %Geo.Point{}, radius: 1000.0}
     conn = delete conn, user_path(conn, :delete, user)
     assert response(conn, 204)
     refute Repo.get(User, user.id)
