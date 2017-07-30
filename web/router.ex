@@ -9,7 +9,8 @@ defmodule WorkoutDemo.Router do
     pipe_through :api
 
     resources "/users", UserController, except: [:new, :edit]
-    resources "/sessions", SessionController, only: [:create]
+    resources "/login", SessionController, only: [:create]
+    get "/logout", SessionController, :delete
 
 	# JSON REST Routes for Searching
     get "/search/users", LocationQueryController, :search_users_within_radius

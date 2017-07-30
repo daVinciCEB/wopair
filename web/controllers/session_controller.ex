@@ -26,4 +26,34 @@ defmodule WorkoutDemo.SessionController do
         |> render("error.json", user_params)
     end
   end
+
+  def delete(conn, _params) do
+    with auth_header = get_req_header(conn, "authorization"),
+         {:ok, token}   <- parse_token(auth_header),
+         {:ok, session} <- find_session_by_token(token),
+    do:  delete_session(session)
+    send_resp(conn, :no_content, "")
+  end
+
+  defp parse_token(["Bearer token=" <> token]) do
+    {:ok, String.replace(token, "\"", "")}
+  end
+  defp parse_token(_non_token_header), do: :error
+
+  defp find_session_by_token(token) do
+    case Repo.one(from s in Session, where: s.token == ^token) do
+      nil     -> :error
+      session -> {:ok, session}
+    end
+  end
+
+  def delete_session(session) do
+    session = Repo.get!(Session, session.id)
+
+    # Here we use delete! (with a bang) because we expect
+    # it to always work (and if it does not, it will raise).
+    Repo.delete!(session)
+  end
+
+
 end
