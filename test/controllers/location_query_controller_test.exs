@@ -25,10 +25,10 @@ defmodule WorkoutDemo.LocationQueryControllerTest do
     assert json_response(conn, 200)["search_results"]
   end
 
-  test "finds all users in a radius in meters when data is valid using input parameters", %{conn: conn} do
-    conn = post conn, location_query_path(conn, :users_within_radius), search: @valid_attrs
-    assert json_response(conn, 200)["search_results"]
-  end
+  # test "finds all users in a radius in meters when data is valid using input parameters", %{conn: conn} do
+  #   conn = post conn, location_query_path(conn, :users_within_radius), search: @valid_attrs
+  #   assert json_response(conn, 200)["search_results"]
+  # end
 
   test "returns errors when search parameters are invalid", %{conn: conn} do
     conn = post conn, location_query_path(conn, :users_within_radius), search: @invalid_attrs
