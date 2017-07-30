@@ -6,6 +6,7 @@ defmodule WorkoutDemo.SessionControllerTest do
   alias WorkoutDemo.Session
   alias WorkoutDemo.User
   @valid_user_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
+  @valid_user_attrs_for_logout %{name: "Sharon Krepner", email: "sharon.krepner@gmail.com", password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
   @valid_session_attrs %{email: "coby.benveniste@gmail.com", password: "thisisapassword"}
 
   setup %{conn: conn} do
@@ -29,6 +30,20 @@ defmodule WorkoutDemo.SessionControllerTest do
   test "does not create resource and renders errors when email is invalid", %{conn: conn} do
     conn = post conn, session_path(conn, :create), user: Map.put(@valid_session_attrs, :email, "not@found.com")
     assert json_response(conn, 401)["errors"] != %{}
+  end
+
+  test "deletes session on logout", %{conn: conn} do
+    changeset = WorkoutDemo.User.registration_changeset(%WorkoutDemo.User{}, @valid_user_attrs_for_logout)
+    user = Repo.insert!(changeset)
+    session = WorkoutDemo.Session.create_changeset(%WorkoutDemo.Session{user_id: user.id}, %{}) |> Repo.insert!
+
+    conn = conn
+    |> put_req_header("accept", "application/json")
+    |> put_req_header("authorization", "Bearer token=\"#{session.token}\"")
+
+    conn = get conn, session_path(conn, :delete)
+    assert response(conn, 204)
+    refute Repo.get(Session, session.id)
   end
 
 end
