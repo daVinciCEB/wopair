@@ -8,7 +8,8 @@ defmodule WorkoutDemo.Router do
   scope "/api", WorkoutDemo do
     pipe_through :api
 
-    resources "/users", UserController, except: [:new, :edit]
+    resources "/register", RegistrationController, only: [:create]
+    resources "/users", UserController, except: [:create, :index, :new, :edit]
     resources "/login", SessionController, only: [:create]
     get "/logout", SessionController, :delete
 
