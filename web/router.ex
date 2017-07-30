@@ -13,8 +13,6 @@ defmodule WorkoutDemo.Router do
     get "/logout", SessionController, :delete
 
 	# JSON REST Routes for Searching
-    get "/search/users", LocationQueryController, :search_users_within_radius
-    # post "/search/users", LocationQueryController, :users_within_radius
-
+    get "/search", LocationQueryController, :search_users_within_radius
   end
 end
