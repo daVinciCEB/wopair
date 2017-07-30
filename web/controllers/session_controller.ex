@@ -31,7 +31,7 @@ defmodule WorkoutDemo.SessionController do
     with auth_header = get_req_header(conn, "authorization"),
          {:ok, token}   <- parse_token(auth_header),
          {:ok, session} <- find_session_by_token(token),
-    do:  delete_session(session)
+    do:  logout_session(session)
     send_resp(conn, :no_content, "")
   end
 
@@ -47,13 +47,12 @@ defmodule WorkoutDemo.SessionController do
     end
   end
 
-  def delete_session(session) do
+  defp logout_session(session) do
     session = Repo.get!(Session, session.id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
     Repo.delete!(session)
   end
-
 
 end

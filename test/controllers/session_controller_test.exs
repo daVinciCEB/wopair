@@ -45,5 +45,4 @@ defmodule WorkoutDemo.SessionControllerTest do
     assert response(conn, 204)
     refute Repo.get(Session, session.id)
   end
-
 end
