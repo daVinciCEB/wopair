@@ -2,6 +2,7 @@ defmodule WorkoutDemo.Authentication do
   import Plug.Conn
   alias WorkoutDemo.{Repo, User, Session}
   import Ecto.Query, only: [from: 2]
+  require Logger
 
   def init(options), do: options
 
@@ -13,6 +14,7 @@ defmodule WorkoutDemo.Authentication do
   end
 
   defp find_user(conn) do
+    Logger.info "Looking for user"
     with auth_header = get_req_header(conn, "authorization"),
          {:ok, token}   <- parse_token(auth_header),
          {:ok, session} <- find_session_by_token(token),
@@ -39,6 +41,7 @@ defmodule WorkoutDemo.Authentication do
   end
 
   defp auth_error!(conn) do
-    conn |> put_status(:unauthorized) |> halt()
+    Logger.info "unauthorized"
+    conn |> put_status(:forbidden) |> halt()
   end
 end
