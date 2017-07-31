@@ -36,8 +36,9 @@ defmodule WorkoutDemo.UserControllerTest do
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
-    assert_error_sent 404, fn ->
-      get conn, user_path(conn |> put_req_header("authorization", "Bearer token=1"), :show)
+    conn = conn |> put_req_header("authorization", "Bearer token=1")
+    assert_error_sent 401, fn ->
+      get conn, user_path(conn, :show)
     end
   end
 

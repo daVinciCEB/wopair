@@ -14,7 +14,6 @@ defmodule WorkoutDemo.Authentication do
   end
 
   defp find_user(conn) do
-    Logger.info "Looking for user"
     with auth_header = get_req_header(conn, "authorization"),
          {:ok, token}   <- parse_token(auth_header),
          {:ok, session} <- find_session_by_token(token),
@@ -41,7 +40,6 @@ defmodule WorkoutDemo.Authentication do
   end
 
   defp auth_error!(conn) do
-    Logger.info "unauthorized"
-    conn |> put_status(:forbidden) |> halt()
+    conn |> send_resp(:unauthorized, "Not Authorized") |> halt()
   end
 end
