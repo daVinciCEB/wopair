@@ -37,9 +37,8 @@ defmodule WorkoutDemo.UserControllerTest do
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
     conn = conn |> put_req_header("authorization", "Bearer token=1")
-    assert_error_sent 401, fn ->
-      get conn, user_path(conn, :show)
-    end
+    conn = get conn, user_path(conn, :show)
+    assert json_response(conn, 401)
   end
 
   # test "creates and renders resource when data is valid", %{conn: conn} do

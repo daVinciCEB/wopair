@@ -40,6 +40,8 @@ defmodule WorkoutDemo.Authentication do
   end
 
   defp auth_error!(conn) do
-    conn |> send_resp(:unauthorized, "Not Authorized") |> halt()
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(:unauthorized, "{ \"error\": \"Not Authorized\"}") |> halt()
   end
 end
