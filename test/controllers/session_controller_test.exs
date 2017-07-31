@@ -54,4 +54,12 @@ defmodule WorkoutDemo.SessionControllerTest do
     conn = get conn, session_path(conn, :delete)
     assert response(conn, 204)
   end
+
+  test "does not delete anything when no token is given", %{conn: conn} do
+    conn = conn
+    |> put_req_header("accept", "application/json")
+
+    conn = get conn, session_path(conn, :delete)
+    assert response(conn, 204)
+  end
 end
