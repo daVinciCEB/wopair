@@ -28,11 +28,16 @@ defmodule WorkoutDemo.SessionController do
   end
 
   def delete(conn, _params) do
+    case delete_session(conn) do
+      {:ok, session} -> logout_session(conn, session)
+      _otherwise  -> logout_error!(conn)
+    end
+  end
+
+  defp delete_session(conn) do
     with auth_header = get_req_header(conn, "authorization"),
          {:ok, token}   <- parse_token(auth_header),
-         {:ok, session} <- find_session_by_token(token),
-    do:  logout_session(session)
-    send_resp(conn, :no_content, "")
+    do:  find_session_by_token(token)
   end
 
   defp parse_token(["Bearer token=" <> token]) do
@@ -47,12 +52,23 @@ defmodule WorkoutDemo.SessionController do
     end
   end
 
-  defp logout_session(session) do
+  defp logout_session(conn, session) do
     session = Repo.get!(Session, session.id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
     Repo.delete!(session)
+
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(:ok, "{ \"logout\": \"Logout Successful\"}") |> halt()
+
+  end
+
+  defp logout_error!(conn) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(:no_content, "")
   end
 
 end

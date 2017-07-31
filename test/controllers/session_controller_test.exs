@@ -42,7 +42,16 @@ defmodule WorkoutDemo.SessionControllerTest do
     |> put_req_header("authorization", "Bearer token=\"#{session.token}\"")
 
     conn = get conn, session_path(conn, :delete)
-    assert response(conn, 204)
+    assert json_response(conn, 200)["logout"]
     refute Repo.get(Session, session.id)
+  end
+
+  test "does not delete anything when token is invalid", %{conn: conn} do
+    conn = conn
+    |> put_req_header("accept", "application/json")
+    |> put_req_header("authorization", "Bearer token=1")
+
+    conn = get conn, session_path(conn, :delete)
+    assert response(conn, 204)
   end
 end
