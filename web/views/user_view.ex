@@ -15,4 +15,12 @@ defmodule WorkoutDemo.UserView do
       email: user.email,
       description: user.description}
   end
+
+  def render("user_verified.json", %{user: user}) do
+    %{id: user.id,
+      name: user.name,
+      email: user.email,
+      verified: user.verified,
+      description: user.description}
+  end
 end
