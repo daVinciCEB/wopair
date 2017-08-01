@@ -15,7 +15,7 @@ defmodule WorkoutDemo.Verification do
     user = conn.assigns.current_user
     case user.verified do
       true -> :ok
-      false -> :error
+      _otherwise -> :error
     end
   end
 

@@ -26,14 +26,14 @@ defmodule WorkoutDemo.Authentication do
 
   defp find_session_by_token(token) do
     case Repo.one(from s in Session, where: s.token == ^token) do
-      nil     -> :error
+      nil -> :error
       session -> {:ok, session}
     end
   end
 
   defp find_user_by_session(session) do
     case Repo.get(User, session.user_id) do
-      nil  -> :error
+      nil -> :error
       user -> {:ok, user}
     end
   end
