@@ -59,4 +59,18 @@ defmodule WorkoutDemo.UserController do
 
     send_resp(conn, :no_content, "")
   end
+
+  def verify(conn, %{"user" => user_params}) do
+    user = conn.assigns.current_user
+    changeset = User.verification_changeset(user, user_params)
+
+    case Repo.update(changeset) do
+      {:ok, user} ->
+        render(conn, "show.json", user: user)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(WorkoutDemo.ChangesetView, "error.json", changeset: changeset)
+    end
+  end
 end

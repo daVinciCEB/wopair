@@ -58,8 +58,6 @@ defmodule WorkoutDemo.User do
     struct
     |> changeset(params)
     |> cast(params, [:verified])
-    |> validate_required([:password])
-    |> validate_length(:password, min: 6)
-    |> put_password_hash
+    |> validate_required([:verified])
   end  
 end
