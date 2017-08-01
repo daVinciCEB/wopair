@@ -5,7 +5,7 @@ defmodule WorkoutDemo.RegistrationController do
 
   def create(conn, %{"user" => user_params}) do
     location_point = %{"location" => %Geo.Point{coordinates: {user_params["longitude"], user_params["latitude"]}, srid: 4326}}
-    new_user_params = Map.merge(user_params, location_point)
+    new_user_params = Map.delete(Map.merge(user_params, location_point), "verified")
 
     changeset = User.registration_changeset(%User{}, new_user_params)
 

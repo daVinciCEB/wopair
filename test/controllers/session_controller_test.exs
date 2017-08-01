@@ -5,8 +5,8 @@ defmodule WorkoutDemo.SessionControllerTest do
 
   alias WorkoutDemo.Session
   alias WorkoutDemo.User
-  @valid_user_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", verified: true, password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
-  @valid_user_attrs_for_logout %{name: "Sharon Krepner", email: "sharon.krepner@gmail.com", verified: true, password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
+  @valid_user_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
+  @valid_user_attrs_for_logout %{name: "Sharon Krepner", email: "sharon.krepner@gmail.com", password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
   @valid_session_attrs %{email: "coby.benveniste@gmail.com", password: "thisisapassword"}
 
   setup %{conn: conn} do
