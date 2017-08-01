@@ -8,6 +8,7 @@ defmodule WorkoutDemo.LocationQueryController do
   alias WorkoutDemo.User
 
   plug WorkoutDemo.Authentication
+  plug WorkoutDemo.Verification
 
   def search_users_within_radius(conn, _params) do
     user_id = conn.assigns.current_user.id

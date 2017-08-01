@@ -2,7 +2,6 @@ defmodule WorkoutDemo.Authentication do
   import Plug.Conn
   alias WorkoutDemo.{Repo, User, Session}
   import Ecto.Query, only: [from: 2]
-  require Logger
 
   def init(options), do: options
 

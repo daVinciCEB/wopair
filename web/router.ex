@@ -14,6 +14,7 @@ defmodule WorkoutDemo.Router do
     # User JSON REST routes
     get "/user", UserController, :show
     put "/user", UserController, :update
+    put "/verify", VerificationController, :verify
     patch "/user", UserController, :update
     delete "/user", UserController, :delete
 

@@ -4,7 +4,7 @@ defmodule WorkoutDemo.UserController do
   alias WorkoutDemo.User
 
   plug WorkoutDemo.Authentication
-
+  plug WorkoutDemo.Verification
   # def index(conn, _params) do
   #   users = Repo.all(User)
   #   render(conn, "index.json", users: users)
