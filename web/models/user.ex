@@ -6,6 +6,7 @@ defmodule WorkoutDemo.User do
     field :name, :string
     field :email, :string
     field :password_hash, :string
+    field :verified, :boolean
     field :description, :string
     field :location, Geo.Point
     field :latitude, :float
@@ -21,8 +22,8 @@ defmodule WorkoutDemo.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :email, :description, :location, :latitude, :longitude, :radius])
-    |> validate_required([:name, :email, :description, :location, :latitude, :longitude, :radius])
+    |> cast(params, [:name, :email, :verified, :description, :location, :latitude, :longitude, :radius])
+    |> validate_required([:name, :email, :verified, :description, :location, :latitude, :longitude, :radius])
     |> validate_number(:latitude, greater_than_or_equal_to: -90)
     |> validate_number(:latitude, less_than_or_equal_to: 90)
     |> validate_number(:longitude, greater_than_or_equal_to: -180)

@@ -1,7 +1,7 @@
 defmodule WorkoutDemo.LocationQueryControllerTest do
   use WorkoutDemo.ConnCase
 
-  @valid_user_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
+  @valid_user_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", verified: true, password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
 
   setup %{conn: conn} do
     changeset = WorkoutDemo.User.registration_changeset(%WorkoutDemo.User{}, @valid_user_attrs)

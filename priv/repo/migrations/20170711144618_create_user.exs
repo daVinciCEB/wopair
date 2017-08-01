@@ -6,11 +6,12 @@ defmodule WorkoutDemo.Repo.Migrations.CreateUser do
       add :name, :string, null: false
       add :email, :string, null: false
       add :password_hash, :string, null: false
-      add :description, :string, null: false
-      add :latitude, :float, null: false
-      add :longitude, :float, null: false
-      add :radius, :float, null: false
-      add :location, :geography, null: false
+      add :verified, :boolean, default: false, null: false
+      add :description, :string
+      add :latitude, :float
+      add :longitude, :float
+      add :radius, :float, default: 1000, null: false
+      add :location, :geography
 
       timestamps()
     end

@@ -2,8 +2,8 @@ defmodule WorkoutDemo.UserControllerTest do
   use WorkoutDemo.ConnCase
 
   alias WorkoutDemo.User
-  @valid_registration_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
-  @valid_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", description: "some content", latitude: 76.5, longitude: 120.5, radius: 1000}
+  @valid_registration_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", verified: true, password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
+  @valid_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", verified: true, description: "some content", latitude: 76.5, longitude: 120.5, radius: 1000}
   @invalid_attrs %{name: "Coby Benveniste", email: "a fake email", password: "12345", description: "some content", latitude: 900, longitude: 1450, radius: 1000000000000}
 
   setup %{conn: conn} do

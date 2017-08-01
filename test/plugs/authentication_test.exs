@@ -3,7 +3,7 @@ defmodule WorkoutDemo.AuthenticationTest do
 
   alias WorkoutDemo.{Authentication, Repo, User, Session}
 
-  @valid_user_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
+  @valid_user_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", verified: true, password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
   @opts Authentication.init([])
 
   def put_auth_token_in_header(conn, token) do

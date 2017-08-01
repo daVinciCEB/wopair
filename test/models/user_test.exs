@@ -3,8 +3,8 @@ defmodule WorkoutDemo.UserTest do
 
   alias WorkoutDemo.User
 
-  @valid_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", description: "some content", latitude: 43.0387105, longitude: -87.9074701, location: %Geo.Point{coordinates: {-87.9074701, 43.0387105}, srid: 4326}, radius: 1000}
-  @invalid_attrs %{name: "Coby Benveniste", email: "a fake email", password: "12345", description: "some content", latitude: 900, longitude: 1450, radius: 100000000000000}
+  @valid_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", verified: true, password: "thisisapassword", description: "some content", latitude: 43.0387105, longitude: -87.9074701, location: %Geo.Point{coordinates: {-87.9074701, 43.0387105}, srid: 4326}, radius: 1000}
+  @invalid_attrs %{name: "Coby Benveniste", email: "a fake email", verified: true, password: "12345", description: "some content", latitude: 900, longitude: 1450, radius: 100000000000000}
 
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)
