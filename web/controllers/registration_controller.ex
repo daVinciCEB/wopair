@@ -11,9 +11,10 @@ defmodule WorkoutDemo.RegistrationController do
 
     case Repo.insert(changeset) do
       {:ok, user} ->
+        WorkoutDemo.VerificationToken.create_verification_token_for_user(user)
         conn
         |> put_status(:created)
-        |> assign(:current_user, user)
+        # |> assign(:current_user, user)
         |> render("show.json", user: user)
       {:error, changeset} ->
         conn

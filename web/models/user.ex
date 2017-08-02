@@ -13,7 +13,7 @@ defmodule WorkoutDemo.User do
     field :longitude, :float
     field :radius, :float
     field :password, :string, virtual: true
-
+    has_many :sessions, WorkoutDemo.Session
     timestamps()
   end
 
@@ -41,6 +41,7 @@ defmodule WorkoutDemo.User do
     |> changeset(params)
     |> cast(params, [:password])
     |> validate_required([:password])
+    |> put_change(:verified, false)
     |> validate_length(:password, min: 6)
     |> put_password_hash
   end
