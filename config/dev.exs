@@ -30,3 +30,8 @@ config :workout_demo, WorkoutDemo.Repo,
   database: "workout_demo_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :workout_demo, WorkoutDemo.Mailer,
+  adapter: Bamboo.MailgunAdapter,
+  api_key: "key-81cfa12b5d8a1d4b13e2b58f0f2f66d7",
+  domain: "sandboxf7a47eedde5849538460545a3035c9a6.mailgun.org"

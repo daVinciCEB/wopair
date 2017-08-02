@@ -21,7 +21,7 @@ defmodule WorkoutDemo.Mixfile do
   def application do
     [mod: {WorkoutDemo, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+                    :phoenix_ecto, :postgrex, :comeonin, :bamboo]]
   end
 
   # Specifies which paths to compile per environment.
@@ -42,7 +42,9 @@ defmodule WorkoutDemo.Mixfile do
      {:cors_plug, "~> 1.2"},
      {:comeonin, "~> 3.0"},
      {:secure_random, "~> 0.5"},
-     {:excoveralls, "~> 0.7", only: :test}
+     {:excoveralls, "~> 0.7", only: :test},
+     {:bamboo, "~> 0.7"},
+     {:bamboo_smtp, "~> 1.2.1"}
    ]
   end
 

@@ -2,6 +2,7 @@ defmodule WorkoutDemo.RegistrationController do
   use WorkoutDemo.Web, :controller
 
   alias WorkoutDemo.User
+  alias WorkoutDemo.Mailer
 
   def create(conn, %{"user" => user_params}) do
     location_point = %{"location" => %Geo.Point{coordinates: {user_params["longitude"], user_params["latitude"]}, srid: 4326}}
@@ -11,7 +12,8 @@ defmodule WorkoutDemo.RegistrationController do
 
     case Repo.insert(changeset) do
       {:ok, user} ->
-        WorkoutDemo.VerificationToken.create_verification_token_for_user(user)
+        token = WorkoutDemo.VerificationToken.create_verification_token_for_user(user)
+        WorkoutDemo.VerificationEmail.verification_email(token.token, user) |> Mailer.deliver_now
         conn
         |> put_status(:created)
         # |> assign(:current_user, user)

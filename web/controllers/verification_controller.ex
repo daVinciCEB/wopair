@@ -6,8 +6,6 @@ defmodule WorkoutDemo.VerificationController do
 
   def verify(conn, %{"token" => token_provided}) do
     token = Repo.get_by(VerificationToken, token: token_provided) |> Repo.preload(:user)
-    # query = from token in VerificationToken, where: token.token == ^token_provided,  select: token
-    # token = Repo.one(query)
     case token do
       nil -> verification_error!(conn)
       _otherwise -> verify_user(conn, token)
