@@ -9,7 +9,7 @@ defmodule WorkoutDemo.VerificationEmail do
   def verification_email(token_value, user) do
     new_email()
     |> to(user.email)
-    |> from("info@myapp.com")
+    |> from("coby.benveniste@gmail.com")
     |> subject("Please Verify Your WoM Account")
     |> html_body("<strong>Welcome to WoM!</strong><br /><p>Please verify your account <a href=http://localhost:4000/verify/" <> token_value <> ">here</a> </p>")
   end

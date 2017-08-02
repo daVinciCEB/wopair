@@ -22,3 +22,13 @@ config :workout_demo, WorkoutDemo.Repo,
   database: "workout_demo_test",
   hostname: if(System.get_env("CI"), do: "mdillon__postgis", else: "localhost"),
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :workout_demo, WorkoutDemo.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.mailgun.org",
+  port: 587,
+  username: "postmaster@sandboxf7a47eedde5849538460545a3035c9a6.mailgun.org",
+  password: "a7183c32664ba8130eff1a0549a99729",
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: false, # can be `true`
+  retries: 1
