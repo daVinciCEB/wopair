@@ -6,8 +6,10 @@ defmodule WorkoutDemo.SessionControllerTest do
   alias WorkoutDemo.Session
   alias WorkoutDemo.User
   @valid_user_attrs %{name: "Coby Benveniste", email: "coby.benveniste@gmail.com", password: "thisisapassword", verified: true, description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
+  @unverified_user_attrs %{name: "Coby Unverified Benveniste", email: "coby.u.benveniste@gmail.com", password: "thisisapassword", verified: false, description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
   @valid_user_attrs_for_logout %{name: "Sharon Krepner", email: "sharon.krepner@gmail.com", password: "thisisapassword", description: "some content", location: %Geo.Point{}, latitude: 76.5, longitude: 120.5, radius: 1000}
   @valid_session_attrs %{email: "coby.benveniste@gmail.com", password: "thisisapassword"}
+  @unverified_session_attrs %{email: "coby.u.benveniste@gmail.com", password: "thisisapassword"}
 
   setup %{conn: conn} do
     changeset = User.registration_changeset(%User{}, @valid_user_attrs)
@@ -22,6 +24,13 @@ defmodule WorkoutDemo.SessionControllerTest do
     token = json_response(conn, 201)["session"]["token"]
     assert token
     assert Repo.get_by(Session, token: token)
+  end
+
+  test "does not create resource and renders errors when user is not verified", %{conn: conn} do
+    changeset = User.registration_changeset(%User{}, @unverified_user_attrs)
+    user = Repo.insert!(changeset)
+    conn = post conn, session_path(conn, :create), user: @unverified_session_attrs
+    assert json_response(conn, 401)["error"]
   end
 
   test "does not create resource and renders errors when password is invalid", %{conn: conn} do
