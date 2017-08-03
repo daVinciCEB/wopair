@@ -15,11 +15,7 @@ defmodule WorkoutDemo.VerificationControllerTest do
     user = Repo.insert!(changeset)
     token = VerificationToken.create_verification_token_for_user(user)
     conn = get conn, verification_path(conn, :verify, token.token)
-    assert json_response(conn, 200)["user"] == %{"id" => user.id,
-      "name" => user.name,
-      "email" => user.email,
-      "verified" => true,
-      "description" => user.description}
+    assert json_response(conn, 200)["session"]
   end
 
   test "does not verify chosen resource and renders page not found when data is invalid", %{conn: conn} do

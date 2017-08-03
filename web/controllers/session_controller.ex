@@ -10,11 +10,15 @@ defmodule WorkoutDemo.SessionController do
     user = Repo.get_by(User, email: user_params["email"])
     cond do
       user && checkpw(user_params["password"], user.password_hash) ->
-        session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
-        {:ok, session} = Repo.insert(session_changeset)
-        conn
-        |> put_status(:created)
-        |> render("show.json", session: session)
+        case user.verified do
+          true ->
+            session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
+            {:ok, session} = Repo.insert(session_changeset)
+            conn
+            |> put_status(:created)
+            |> render("show.json", session: session)
+          _otherwise -> verification_error!(conn)
+        end
       user ->
         conn
         |> put_status(:unauthorized)
@@ -71,4 +75,9 @@ defmodule WorkoutDemo.SessionController do
     |> send_resp(:no_content, "")
   end
 
+  defp verification_error!(conn) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(:unauthorized, "{ \"error\": \"Verify Your User\"}")
+  end
 end

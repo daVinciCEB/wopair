@@ -1,7 +1,7 @@
 defmodule WorkoutDemo.VerificationView do
   use WorkoutDemo.Web, :view
 
-  def render("show.json", %{user: user}) do
-    %{user: render_one(user, WorkoutDemo.UserView, "user_verified.json")}
+  def render("show.json", %{session: session}) do
+    %{session: render_one(session, WorkoutDemo.SessionView, "session.json")}
   end
 end

@@ -3,6 +3,7 @@ defmodule WorkoutDemo.VerificationController do
 
   alias WorkoutDemo.User
   alias WorkoutDemo.VerificationToken
+  alias WorkoutDemo.Session
 
   def verify(conn, %{"token" => token_provided}) do
     token = Repo.get_by(VerificationToken, token: token_provided) |> Repo.preload(:user)
@@ -21,7 +22,11 @@ defmodule WorkoutDemo.VerificationController do
 
     case Repo.update(changeset) do
       {:ok, user} ->
-        render(conn, "show.json", user: user)
+        session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
+        {:ok, session} = Repo.insert(session_changeset)
+        conn
+        |> put_status(:ok)
+        |> render("show.json", session: session)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

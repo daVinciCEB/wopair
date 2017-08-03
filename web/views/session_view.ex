@@ -10,6 +10,6 @@ defmodule WorkoutDemo.SessionView do
   end
 
   def render("error.json", _anything) do
-    %{errors1: "failed to authenticate"}
+    %{errors: "failed to authenticate"}
   end
 end
