@@ -8,23 +8,23 @@ defmodule WorkoutDemo.Router do
   scope "/api", WorkoutDemo do
     pipe_through :api
 
-    # Register a new user
+    # Registration Route
     resources "/register", RegistrationController, only: [:create]
 
-    # User JSON REST routes
-    get "/user", UserController, :show
-    put "/user", UserController, :update
-    patch "/user", UserController, :update
-    delete "/user", UserController, :delete
+    # User Routes
+    get "/me", UserController, :show
+    put "/me", UserController, :update
+    patch "/me", UserController, :update
+    delete "/me", UserController, :delete
 
-    # User Verification route
+    # User Verification Route
     get "/verify/:token", VerificationController, :verify
 
     # Login and Logout Routes
     resources "/login", SessionController, only: [:create]
     get "/logout", SessionController, :delete
 
-	# JSON REST Routes for Searching
+	# Searching Routes
     get "/search", LocationQueryController, :search_users_within_radius
   end
 end
