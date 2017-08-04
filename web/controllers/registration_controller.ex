@@ -13,7 +13,7 @@ defmodule WorkoutDemo.RegistrationController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         token = WorkoutDemo.VerificationToken.create_verification_token_for_user(user)
-        WorkoutDemo.VerificationEmail.verification_email(token.token, user) |> Mailer.deliver_now
+        WorkoutDemo.VerificationEmail.verification_email(token.token, user) |> Mailer.deliver_later
         conn
         |> put_status(:created)
         # |> assign(:current_user, user)

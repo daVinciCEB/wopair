@@ -4,7 +4,7 @@ defmodule WorkoutDemo.Repo.Migrations.CreateVerificationToken do
   def change do
     create table(:verification_tokens) do
       add :token, :string
-      add :user_id, references(:users, on_delete: :nothing)
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end
