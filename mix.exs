@@ -44,7 +44,8 @@ defmodule WorkoutDemo.Mixfile do
      {:secure_random, "~> 0.5"},
      {:excoveralls, "~> 0.7", only: :test},
      {:bamboo, "~> 0.7"},
-     {:bamboo_smtp, "~> 1.2.1"}
+     {:bamboo_smtp, "~> 1.2.1"},
+     {:hackney, "1.6.1", override: true}
    ]
   end
 
