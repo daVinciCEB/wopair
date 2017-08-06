@@ -3,7 +3,7 @@ defmodule WorkoutDemo.Mixfile do
 
   def project do
     [app: :workout_demo,
-     version: "0.0.1",
+     version: "0.2.0",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -45,7 +45,8 @@ defmodule WorkoutDemo.Mixfile do
      {:excoveralls, "~> 0.7", only: :test},
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
-     {:hackney, "1.6.1", override: true}
+     {:hackney, "1.6.1", override: true},
+     {:distillery, "~> 1.4", runtime: false}
    ]
   end
 

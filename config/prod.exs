@@ -13,8 +13,12 @@ use Mix.Config
 # which you typically run after static files are built.
 config :workout_demo, WorkoutDemo.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/manifest.json"
+  url: [host: "wopair.com", port: 80],
+  cache_static_manifest: "priv/static/manifest.json",
+  # Distillery Configuration
+  root: ".",
+  server: true,
+  version: Mix.Project.config[:version]
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -58,4 +62,21 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"
+config :workout_demo, WorkoutDemo.Endpoint,
+  secret_key_base: "6cZ/jmWxwfp0CNad2z9dwS3UbFrWHCzC2mKVl++b0uI2NY1cjt1n/Vwd0KJZrAuY"
+
+# Configure your database
+config :workout_demo, WorkoutDemo.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  types: WorkoutDemo.PostgresTypes,
+  username: System.get_env("DB_USERNAME"),
+  password: System.get_env("DB_PASSWORD"),
+  database: System.get_env("DB_DATABASE"),
+  hostname: System.get_env("DB_HOSTNAME"),
+  # username: "deploy",
+  # password: "wopairdeployer",
+  # database: "workout_demo_prod",
+  pool_size: 20
+
+config :phoenix, :serve_endpoints, true
