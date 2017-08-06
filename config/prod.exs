@@ -64,8 +64,9 @@ config :logger, level: :info
 # which should be versioned separately.
 # import_config "prod.secret.exs"
 config :workout_demo, WorkoutDemo.Endpoint,
-  secret_key_base: "6cZ/jmWxwfp0CNad2z9dwS3UbFrWHCzC2mKVl++b0uI2NY1cjt1n/Vwd0KJZrAuY"
-
+  # secret_key_base: "6cZ/jmWxwfp0CNad2z9dwS3UbFrWHCzC2mKVl++b0uI2NY1cjt1n/Vwd0KJZrAuY"
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  
 # Configure your database
 config :workout_demo, WorkoutDemo.Repo,
   adapter: Ecto.Adapters.Postgres,
