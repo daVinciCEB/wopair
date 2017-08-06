@@ -41,6 +41,7 @@ end
 release :workout_demo do
   set version: current_version(:workout_demo)
   set applications: [
+    :workout_demo,
     :runtime_tools,
     :bamboo,
     :cors_plug,
