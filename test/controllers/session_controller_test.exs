@@ -46,7 +46,7 @@ defmodule WorkoutDemo.SessionControllerTest do
   test "deletes session on logout", %{conn: conn} do
     changeset = WorkoutDemo.User.registration_changeset(%WorkoutDemo.User{}, @valid_user_attrs_for_logout)
     user = Repo.insert!(changeset)
-    session = WorkoutDemo.Session.create_changeset(%WorkoutDemo.Session{user_id: user.id}, %{}) |> Repo.insert!
+    session = WorkoutDemo.Session.create_changeset(%WorkoutDemo.Session{user_id: user.id, ip_address: "127.0.0.1"}, %{}) |> Repo.insert!
 
     conn = conn
     |> put_req_header("accept", "application/json")

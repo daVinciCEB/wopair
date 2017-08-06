@@ -14,7 +14,7 @@ defmodule WorkoutDemo.VerificationTest do
   test "user is verified", %{conn: conn} do
     changeset = User.registration_changeset(%User{}, @valid_user_attrs)
     user = Repo.insert!(changeset)
-    session = Session.create_changeset(%Session{user_id: user.id}, %{}) |> Repo.insert!
+    session = Session.create_changeset(%Session{user_id: user.id, ip_address: "127.0.0.1"}, %{}) |> Repo.insert!
     verification_changeset = User.verification_changeset(user, @valid_user_attrs)
     Repo.update!(verification_changeset)
 
@@ -28,7 +28,7 @@ defmodule WorkoutDemo.VerificationTest do
   test "user is not verified", %{conn: conn} do
     changeset = User.registration_changeset(%User{}, @valid_user_attrs)
     user = Repo.insert!(changeset)
-    session = Session.create_changeset(%Session{user_id: user.id}, %{}) |> Repo.insert!
+    session = Session.create_changeset(%Session{user_id: user.id, ip_address: "127.0.0.1"}, %{}) |> Repo.insert!
 
     conn = conn
     |> put_auth_token_in_header(session.token)

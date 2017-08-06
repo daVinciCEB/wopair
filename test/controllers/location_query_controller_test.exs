@@ -6,7 +6,7 @@ defmodule WorkoutDemo.LocationQueryControllerTest do
   setup %{conn: conn} do
     changeset = WorkoutDemo.User.registration_changeset(%WorkoutDemo.User{}, @valid_user_attrs)
     user = Repo.insert!(changeset)
-    session = WorkoutDemo.Session.create_changeset(%WorkoutDemo.Session{user_id: user.id}, %{}) |> Repo.insert!
+    session = WorkoutDemo.Session.create_changeset(%WorkoutDemo.Session{user_id: user.id, ip_address: "127.0.0.1"}, %{}) |> Repo.insert!
     verification_changeset = WorkoutDemo.User.verification_changeset(user, @valid_user_attrs)
     Repo.update!(verification_changeset)
 

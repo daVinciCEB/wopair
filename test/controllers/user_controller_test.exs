@@ -9,7 +9,7 @@ defmodule WorkoutDemo.UserControllerTest do
   setup %{conn: conn} do
     changeset = User.registration_changeset(%User{}, @valid_registration_attrs)
     user = Repo.insert!(changeset)
-    session = WorkoutDemo.Session.create_changeset(%WorkoutDemo.Session{user_id: user.id}, %{}) |> Repo.insert!
+    session = WorkoutDemo.Session.create_changeset(%WorkoutDemo.Session{user_id: user.id, ip_address: "127.0.0.1"}, %{}) |> Repo.insert!
     verification_changeset = User.verification_changeset(user, @valid_attrs)
     Repo.update!(verification_changeset)
 

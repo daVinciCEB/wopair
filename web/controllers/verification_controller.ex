@@ -22,7 +22,7 @@ defmodule WorkoutDemo.VerificationController do
 
     case Repo.update(changeset) do
       {:ok, user} ->
-        session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id})
+        session_changeset = Session.create_changeset(%Session{}, %{user_id: user.id, ip_address: get_user_ip_address(conn)})
         {:ok, session} = Repo.insert(session_changeset)
         conn
         |> put_status(:ok)
@@ -40,4 +40,19 @@ defmodule WorkoutDemo.VerificationController do
     |> send_resp(:unauthorized, "{ \"error\": \"Verification Not Successful\"}")
   end
 
+  defp get_user_ip_address(conn) do
+    # Get the remote IP from the X-Forwarded-For header if present, so this
+    # works as expected when behind a load balancer
+    remote_ips = Plug.Conn.get_req_header(conn, "x-forwarded-for")
+    remote_ip = List.first(remote_ips)
+
+    # If there was nothing in X-Forarded-For, use the remote IP directly
+    unless remote_ip do
+      # Extract the remote IP from the connection
+      remote_ip_as_tuple = conn.remote_ip
+
+      # The remote IP is a tuple like `{127, 0, 0, 1}`, so we need join it into a string
+      remote_ip = Enum.join(Tuple.to_list(remote_ip_as_tuple), ".")
+    end
+  end
 end

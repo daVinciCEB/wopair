@@ -16,7 +16,7 @@ defmodule WorkoutDemo.Session do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:user_id, :ip_address])
-    |> validate_required([:user_id])
+    |> validate_required([:user_id, :ip_address])
   end
 
   def create_changeset(struct, params \\ %{}) do
