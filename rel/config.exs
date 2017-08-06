@@ -31,7 +31,6 @@ environment :prod do
   set include_erts: true
   set include_src: false
   set cookie: :"<m]Y{vu@oo.IqDj9t)}2}03WaDkE:9:%_sHw8N~D,AqF{%M/!sgG~*UGiNKm&bi{"
-  set output_dir: "rel/workout_demo"
 end
 
 # You may define one or more releases in this file.
@@ -42,7 +41,12 @@ end
 release :workout_demo do
   set version: current_version(:workout_demo)
   set applications: [
-    :runtime_tools
+    :runtime_tools,
+    :bamboo_smtp,
+    :cors_plug,
+    :geo,
+    :secure_random,
+    :elixir_make
   ]
 end
 
