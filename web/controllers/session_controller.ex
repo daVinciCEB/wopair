@@ -31,7 +31,7 @@ defmodule WorkoutDemo.SessionController do
     end
   end
 
-  defp get_user_ip_address(conn) do
+  def get_user_ip_address(conn) do
     # Get the remote IP from the X-Forwarded-For header if present, so this
     # works as expected when behind a load balancer
     remote_ips = Plug.Conn.get_req_header(conn, "x-forwarded-for")
