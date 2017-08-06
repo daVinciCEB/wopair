@@ -3,7 +3,7 @@ defmodule WorkoutDemo.SessionTest do
 
   alias WorkoutDemo.Session
 
-  @valid_attrs %{user_id: "12345"}
+  @valid_attrs %{user_id: "12345", ip_address: "123.45.12.9"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

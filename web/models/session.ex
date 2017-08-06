@@ -4,6 +4,7 @@ defmodule WorkoutDemo.Session do
   @derive {Poison.Encoder, only: [:token]}
   schema "sessions" do
     field :token, :string
+    field :ip_address, :string
     belongs_to :user, WorkoutDemo.User
 
     timestamps()
@@ -14,7 +15,7 @@ defmodule WorkoutDemo.Session do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:user_id])
+    |> cast(params, [:user_id, :ip_address])
     |> validate_required([:user_id])
   end
 

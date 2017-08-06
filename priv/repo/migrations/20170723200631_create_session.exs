@@ -4,6 +4,7 @@ defmodule WorkoutDemo.Repo.Migrations.CreateSession do
   def change do
     create table(:sessions) do
       add :token, :string, null: false
+      add :ip_address, :string
       add :user_id, references(:users, on_delete: :delete_all), null: false
 
       timestamps()
