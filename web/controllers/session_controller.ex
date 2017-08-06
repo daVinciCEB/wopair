@@ -83,7 +83,7 @@ defmodule WorkoutDemo.SessionController do
 
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(:ok, "{ \"logout\": \"Logout Successful\"}") |> halt()
+    |> send_resp(:ok, "{ \"logout\": \"Logout Successful\"}")
 
   end
 
