@@ -38,9 +38,7 @@ defmodule WorkoutDemo.Session do
         remote_ip_as_tuple = conn.remote_ip
         # The remote IP is a tuple like `{127, 0, 0, 1}`, so we need join it into a string
         Enum.join(Tuple.to_list(remote_ip_as_tuple), ".")
-      _otherwise ->
-        # The remote IP is a tuple like `{127, 0, 0, 1}`, so we need join it into a string
-        Enum.join(Tuple.to_list(remote_ip), ".")
+      _otherwise -> remote_ip
     end
   end
 end
