@@ -43,6 +43,7 @@ release :workout_demo do
   set applications: [
     :runtime_tools,
     :bamboo_smtp,
+    :bamboo,
     :cors_plug,
     :geo,
     :secure_random,
