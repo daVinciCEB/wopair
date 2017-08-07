@@ -46,7 +46,7 @@ defmodule WorkoutDemo.Mixfile do
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
      # {:hackney, "1.6.1", override: true},
-     {:hackney, ">= 1.6.1"},
+     {:hackney, "~> 1.8.0"},
      {:distillery, "~> 1.4", runtime: false}
    ]
   end
