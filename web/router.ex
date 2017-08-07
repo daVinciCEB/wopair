@@ -5,7 +5,7 @@ defmodule WorkoutDemo.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", WorkoutDemo do
+  scope "/v1", WorkoutDemo do
     pipe_through :api
 
     # Registration Route
