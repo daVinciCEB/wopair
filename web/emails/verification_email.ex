@@ -9,8 +9,8 @@ defmodule WorkoutDemo.VerificationEmail do
   def verification_email(token_value, user) do
     new_email()
     |> to(user.email)
-    |> from("verify@wom.com")
-    |> subject("Please Verify Your WoM Account")
-    |> html_body("<strong>Welcome to WoM!</strong><br /><p>Please verify your account <a href=http://api.wopair.com/api/verify/" <> token_value <> ">here</a> </p>")
+    |> from("verify@wopair.com")
+    |> subject("Please Verify Your WoPair Account")
+    |> html_body("<strong>Welcome to WoPair!</strong><br /><p>Please verify your account <a href=http://api.wopair.com/api/verify/" <> token_value <> ">here</a> </p>")
   end
 end
