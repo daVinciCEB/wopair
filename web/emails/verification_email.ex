@@ -11,6 +11,6 @@ defmodule WorkoutDemo.VerificationEmail do
     |> to(user.email)
     |> from("verify@wopair.com")
     |> subject("Please Verify Your WoPair Account")
-    |> html_body("<strong>Welcome to WoPair!</strong><br /><p>Please verify your account <a href=http://api.wopair.com/api/verify/" <> token_value <> ">here</a> </p>")
+    |> html_body("<strong>Welcome to WoPair!</strong><br /><p>Please verify your account <a href=http://api.wopair.com/v1/verify/" <> token_value <> ">here</a> </p>")
   end
 end
